@@ -1,60 +1,51 @@
+
 import java.io.IOException;
 
 public class Menu 
 {
-	private String titolo;
-	private String[] vociMenu;
-	private int numeroVociMenu;
+	private int numeroVoci;
+	private String[] elencoVoci;
 	
-	public Menu (String titolo, String[] elencoVoci)
+	public Menu(String[] elenco)
 	{
-		this.titolo=titolo;
-		numeroVociMenu=elencoVoci.length;
-		vociMenu=new String[numeroVociMenu];
-		for (int i = 0; i <numeroVociMenu; i++) 
+		numeroVoci=elenco.length;
+		elencoVoci=new String[numeroVoci];
+		for (int i = 0; i < numeroVoci; i++) 
 		{
-			vociMenu[i]=elencoVoci[i];
+			elencoVoci[i]=elenco[i];
 		}
 	}
-	
 	public void visualizza()
 	{
-		System.out.println(titolo);
-		for (int i = 0; i <numeroVociMenu; i++) 
+		for (int i = 0; i < numeroVoci; i++) 
 		{
-			System.out.println(vociMenu[i]);
+			System.out.println(elencoVoci[i]);
 		}
 	}
-	
 	public int scelta()
 	{
 		ConsoleInput tastiera= new ConsoleInput();
-		int scelta=-1;
-		
-		while(scelta<0 || scelta>=numeroVociMenu)
+		int voceScelta=-1;
+		do
 		{
 			visualizza();
 			System.out.println("Scegli...");
 			try 
 			{
-				scelta=tastiera.readInt();
-				if (scelta<0 || scelta>=numeroVociMenu)
-					System.out.println("Valore inserito non previsto");
-			} 
-			catch (NumberFormatException e) 
+				voceScelta=tastiera.readInt();
+				if(voceScelta>=numeroVoci || voceScelta<0)
+				{
+					System.out.println("Opzione non disponibile");
+				}
+			} catch (NumberFormatException e) 
 			{
-				System.out.println("Formato inserito non corretto. Reinserire.");
-			} 
-			catch (IOException e) 
-			{
-				System.out.println("Impossibile leggere dal dispositivo di input");
+				System.out.println("Formato dato non corretto. Rinserire");
 			}
-						
-		}
-		return scelta;	
-			
-		
-		
-		
+			catch(IOException e)
+			{
+				System.out.println("Impossibile leggere dal dispositivo di input. Riprovare");
+			}
+		}while(voceScelta<0 || voceScelta>=numeroVoci);
+		return voceScelta;
 	}
 }

@@ -11,7 +11,7 @@ public class Visite
 	private LocalDate Data;
 	
 	//Costruttori
-	public Visite (int id, String nomeP,String cognomeP,String nomeM,String cognome)
+	public Visite (int id, String nomeP,String cognomeP,String nomeM,String cognomeM)
 	{
 		setId(id);
 		setNomeP(nomeP);
@@ -20,6 +20,17 @@ public class Visite
 		setCognomeM(cognomeM);
 		setVisitaSvolta(visitaSvolta);
 		setData(null);
+	}
+	
+	public Visite (Visite i)
+	{
+		setId(i.getId());
+		setNomeP(i.getNomeP());
+		setCognomeP(i.getCognomeP());
+		setNomeM(i.getCognomeM());
+		setCognomeM(i.getCognomeM());
+		setVisitaSvolta(i.getVisitaSvolta());
+		setData(i.getData());
 	}
 	//getter e setter
 	public int getId() 
@@ -92,10 +103,10 @@ public class Visite
 		Data = data;
 	}
 	
-	public String toString() 
+	/*public String toString() 
 	{
 		return(getId()+" "+getNomeP()+" "+getCognomeP()+getNomeM()+" "+getCognomeM()+" "+getVisitaSvolta()+" "+getData());
-	}
+	}*/
 	
 
 }
